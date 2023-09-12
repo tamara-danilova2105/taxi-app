@@ -1,8 +1,12 @@
+import { YMaps, Map } from "@pbe/react-yandex-maps";
+
 function App() {
   return (
-    <div>
-      TEST
-    </div>
+    <YMaps>
+      <div>
+        <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} />
+      </div>
+    </YMaps>
   );
 }
 
