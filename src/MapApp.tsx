@@ -5,8 +5,8 @@ export const MapApp = () => {
         <YMaps>
             <Map
                 defaultState={{
-                    center: [55.75, 37.57],
-                    zoom: 9,
+                    center: [56.8498, 53.2045],
+                    zoom: 13,
                     controls: ["zoomControl", "fullscreenControl"],
                 }}
                 width={500}
@@ -15,7 +15,7 @@ export const MapApp = () => {
             >
                 <Placemark
                     modules={["geoObject.addon.balloon"]}
-                    defaultGeometry={[55.75, 37.57]}
+                    defaultGeometry={[56.8498, 53.2045]}
                     properties={{
                         balloonContentBody:
                             "This is balloon loaded by the Yandex.Maps API module system",
