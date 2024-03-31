@@ -10,23 +10,9 @@ body {
     background: #F5F5DC;
 }
 
-.container_form {
-    margin-top: 20px;
-    width: 40%;
-}
-
-.container_result {
-    margin-top: 20px;
-}
-
-.header {
+.container_app {
     display: flex;
-    justify-content: center;
-    border-bottom: 1px solid black;
-}
-
-.label {
-    width: 200px;
-    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 24px;
 }

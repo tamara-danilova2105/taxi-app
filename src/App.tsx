@@ -1,18 +1,12 @@
-import { FormSearch } from "./FormSearch";
-import { MapApp } from "./MapApp";
+import { FormSearch } from "./components/FormSearch/FormSearch";
+import { MapApp } from "./components/MapApp/MapApp";
 
 function App() {
   return (
-    <div>
-      <div className="header">
+    <div className="container_app">
         <h2>Детали заказа</h2>
-      </div>
-      <div className="container_form">
         <FormSearch />
-      </div>
-      <div className="container_result">
         <MapApp />
-      </div>
     </div>
   );
 }
