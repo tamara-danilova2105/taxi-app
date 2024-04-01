@@ -1,14 +1,15 @@
 import { Placemark } from "@pbe/react-yandex-maps";
 import { OptionsPlacemark } from "../../types/types";
 
-interface PlacemarkAppProps {
+interface PlacemarkAddressProps {
     coordinates: number[];
+    color: string
 }
 
-export const PlacemarkApp = ({coordinates}: PlacemarkAppProps) => {
+export const PlacemarkApp = ({ coordinates, color }: PlacemarkAddressProps) => {
 
     const optionsPlacemark: OptionsPlacemark = {
-        iconColor: '#FF8911'
+        iconColor: color
     };
 
     return (
