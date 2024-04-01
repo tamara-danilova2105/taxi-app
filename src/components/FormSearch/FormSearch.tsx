@@ -3,13 +3,14 @@ import styles from './FormSearch.module.css'
 import { useAppDispatch } from '../../redux/hooks';
 import { setSearch } from '../../redux/searchSlice';
 import { ChangeEvent } from 'react';
+import useDebounce from '../../hooks/useDebounce/useDebounce';
 
 export const FormSearch = () => {
     const dispatch = useAppDispatch();
 
-    const hadleSearch = (e: ChangeEvent<HTMLInputElement>): void => {
-        dispatch(setSearch(e.target.value))
-    };
+    const handleOnChange = useDebounce((e: ChangeEvent<HTMLInputElement>): void => {
+        dispatch(setSearch(e.target.value));
+    }, 500);
 
     return (
         <Form >
@@ -22,7 +23,7 @@ export const FormSearch = () => {
                 <Form.Control
                     type='text'
                     placeholder="Введите адрес..."
-                    onChange={hadleSearch}
+                    onChange={handleOnChange}
                 />
             </Form.Group>
         </Form>
