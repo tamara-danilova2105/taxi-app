@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import styles from './FormSearch.module.css'
+import styles from './FormSearch.module.scss'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getSearchValue, setSearch } from '../../redux/searchSlice';
 import { ChangeEvent, useEffect, useState } from 'react';

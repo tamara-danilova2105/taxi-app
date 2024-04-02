@@ -9,7 +9,6 @@ export const MapApp = () => {
 
     const [coordinates, setCoordinates] = useState([56.8498, 53.2045]);
     const address = useAppSelector(getSearchValue);
-    
     const dispatch = useAppDispatch();
 
     const convertAdress = () => {
@@ -31,7 +30,7 @@ export const MapApp = () => {
 
     useEffect(() => {
         if (address !== '') {
-            getCoordinate()
+            getCoordinate();
         }
     }, [address]);
 
