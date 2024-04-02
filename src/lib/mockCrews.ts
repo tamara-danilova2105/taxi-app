@@ -33,8 +33,8 @@ export const mockCrews: Crews[] = [
         car_number: "А111АА",
         driver_name: "Иванов",
         driver_phone: "7777",
-        lat: 56.860581,
-        lon: 53.209221,
+        lat: 56.847811,
+        lon: 53.203811,
         distance: 601
     },
-]
+];
