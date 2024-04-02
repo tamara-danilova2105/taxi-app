@@ -1,13 +1,18 @@
+import { Stack } from "react-bootstrap";
+import { CrewsList } from "./components/CrewsList/CrewsList";
 import { FormSearch } from "./components/FormSearch/FormSearch";
 import { MapApp } from "./components/MapApp/MapApp";
 
 function App() {
   return (
-    <div className="container_app">
-        <h2>Детали заказа</h2>
-        <FormSearch />
+    <Stack gap={3} className="col-md-5 mx-auto">
+      <h2 className="mx-auto">Детали заказа</h2>
+      <FormSearch />
+      <Stack direction="horizontal" className="align-start" gap={3}>
         <MapApp />
-    </div>
+        <CrewsList />
+      </Stack>
+    </Stack>
   );
 }
 

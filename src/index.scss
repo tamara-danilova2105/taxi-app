@@ -10,9 +10,10 @@ body {
     background: #F5F5DC;
 }
 
-.container_app {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+.align-start {
+    align-items: flex-start !important;
+}
+
+.justify-between {
+    justify-content: space-between;
 }

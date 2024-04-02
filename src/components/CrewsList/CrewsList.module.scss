@@ -1,0 +1,21 @@
+.main {
+    height: 500px;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.main::-webkit-scrollbar {
+    background-color: #F5F5DC;
+    width: 6px;
+    height: 10px;
+}
+
+.main::-webkit-scrollbar-corner {
+    display: none;
+}
+
+.main::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: #198754;
+}

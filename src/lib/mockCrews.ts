@@ -27,14 +27,26 @@ export const mockCrews: Crews[] = [
     },
     {
         crew_id: 126,
-        car_mark: "Hyundai",
-        car_model: "Solaris",
+        car_mark: "Лада",
+        car_model: "Веста",
         car_color: "красный",
         car_number: "А111АА",
         driver_name: "Иванов",
         driver_phone: "7777",
         lat: 56.847811,
         lon: 53.203811,
-        distance: 601
+        distance: 500
+    },
+    {
+        crew_id: 127,
+        car_mark: "Audi",
+        car_model: "Q7",
+        car_color: "золотая",
+        car_number: "А777АА",
+        driver_name: "СуперТаксист",
+        driver_phone: "777999",
+        lat: 56.845700,
+        lon: 53.214700,
+        distance: 700
     },
 ];

@@ -25,7 +25,7 @@ export const FormSearch = () => {
     }, 1500);
 
     return (
-        <Form >
+        <Form>
             <Form.Group className="d-flex">
                 <Form.Label
                     className={styles.label}

@@ -6,12 +6,13 @@ import { PlacemarkApp } from "./PlacemarkApp";
 import { API_KEY, endpoint } from "../../lib/const";
 import { Crews } from "../../types/types";
 import { mockCrews } from "../../lib/mockCrews";
+import { getCrews, setCrewList } from "../../redux/crewsSlice";
 
 export const MapApp = () => {
 
     const [coordinates, setCoordinates] = useState<number[]>([56.8498, 53.2045]);
-    const [crews, setCrews] = useState<Crews[]>([])
     const address = useAppSelector(getSearchValue);
+    const crews = useAppSelector(getCrews);
     const dispatch = useAppDispatch();
 
     const convertAdress = () => {
@@ -26,7 +27,7 @@ export const MapApp = () => {
             const data = await response.json();
             const coordinates = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
             setCoordinates([parseFloat(coordinates[1]), parseFloat(coordinates[0])]);
-            setCrews(mockCrews);
+            dispatch(setCrewList(mockCrews));
         } catch (err) {
             console.error(getCoordinate.name, err);
         }
@@ -34,7 +35,7 @@ export const MapApp = () => {
 
     useEffect(() => {
         if (address !== '') getCoordinate();
-        else setCrews([]);
+        else dispatch(setCrewList([]));
     }, [address]);
 
     const handleClickMap = async (e: ymaps.Event) => {
@@ -45,7 +46,7 @@ export const MapApp = () => {
             const address = data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.text;
             const convertAdress = address.split(', ').splice(-2).join(', ');
             dispatch(setSearch(convertAdress));
-            setCrews(mockCrews);
+            dispatch(setCrewList(mockCrews));
         } catch (err) {
             console.error(handleClickMap.name, err);
         }
