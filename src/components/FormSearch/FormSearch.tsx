@@ -1,16 +1,28 @@
 import Form from 'react-bootstrap/Form';
 import styles from './FormSearch.module.css'
-import { useAppDispatch } from '../../redux/hooks';
-import { setSearch } from '../../redux/searchSlice';
-import { ChangeEvent } from 'react';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { getSearchValue, setSearch } from '../../redux/searchSlice';
+import { ChangeEvent, useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce/useDebounce';
 
 export const FormSearch = () => {
     const dispatch = useAppDispatch();
+    const address = useAppSelector(getSearchValue);
+    const [value, setValue] = useState(address);
 
-    const handleOnChange = useDebounce((e: ChangeEvent<HTMLInputElement>): void => {
-        dispatch(setSearch(e.target.value));
-    }, 500);
+    useEffect(() => {
+        setValue(address);
+    }, [address]);
+    
+
+    const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setValue(e.target.value);
+        saveAdress(e.target.value);
+    }
+
+    const saveAdress = useDebounce((value: string): void => {
+        dispatch(setSearch(value));
+    }, 1500);
 
     return (
         <Form >
@@ -23,6 +35,7 @@ export const FormSearch = () => {
                 <Form.Control
                     type='text'
                     placeholder="Введите адрес..."
+                    value={value}
                     onChange={handleOnChange}
                 />
             </Form.Group>

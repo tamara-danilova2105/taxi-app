@@ -1,14 +1,15 @@
 import { YMaps, Map } from "@pbe/react-yandex-maps";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { setSearch } from "../../redux/searchSlice";
+import { getSearchValue, setSearch } from "../../redux/searchSlice";
 import { PlacemarkApp } from "./PlacemarkApp";
 import { API_KEY, endpoint } from "../../lib/const";
 
 export const MapApp = () => {
 
     const [coordinates, setCoordinates] = useState([56.8498, 53.2045]);
-    const address = useAppSelector((state) => state.search.value);
+    const address = useAppSelector(getSearchValue);
+    
     const dispatch = useAppDispatch();
 
     const convertAdress = () => {
@@ -37,10 +38,11 @@ export const MapApp = () => {
     const handleClickMap = async (e: ymaps.Event) => {
         const coords = e.get('coords');
         try {
-            const response = await fetch(`${endpoint}&geocode=${coords[1]},${coords[0]}`);
+            const response = await fetch(`${endpoint}&apikey=${API_KEY}&geocode=${coords[1]},${coords[0]}`);
             const data = await response.json();
             const address = data.response.GeoObjectCollection.featureMember[0].GeoObject.metaDataProperty.GeocoderMetaData.text;
-            dispatch(setSearch(address));
+            const convertAdress = address.split(', ').splice(-2).join(', ');
+            dispatch(setSearch(convertAdress));
         } catch (err) {
             console.error(handleClickMap.name, err);
         }
