@@ -12,5 +12,5 @@ export interface Crews {
     driver_phone: string;
     lat: number;
     lon: number;
-    distance: number;
+    distance?: number;
 }

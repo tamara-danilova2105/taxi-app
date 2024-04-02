@@ -11,7 +11,6 @@ export const mockCrews: Crews[] = [
         driver_phone: "7788",
         lat: 56.855532,
         lon: 53.217462,
-        distance: 300
     }, 
     {
         crew_id: 125,
@@ -23,7 +22,6 @@ export const mockCrews: Crews[] = [
         driver_phone: "8899",
         lat: 56.860581,
         lon: 53.209223,
-        distance: 600
     },
     {
         crew_id: 126,
@@ -35,18 +33,16 @@ export const mockCrews: Crews[] = [
         driver_phone: "7777",
         lat: 56.847811,
         lon: 53.203811,
-        distance: 500
     },
     {
         crew_id: 127,
         car_mark: "Audi",
         car_model: "Q7",
-        car_color: "золотая",
+        car_color: "золотой",
         car_number: "А777АА",
         driver_name: "СуперТаксист",
         driver_phone: "777999",
         lat: 56.845700,
         lon: 53.214700,
-        distance: 700
     },
 ];

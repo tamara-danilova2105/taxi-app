@@ -1,18 +1,18 @@
 import { YMaps, Map } from "@pbe/react-yandex-maps";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { getSearchValue, setSearch } from "../../redux/searchSlice";
 import { PlacemarkApp } from "./PlacemarkApp";
 import { API_KEY, endpoint } from "../../lib/const";
-import { Crews } from "../../types/types";
 import { mockCrews } from "../../lib/mockCrews";
 import { getCrews, setCrewList } from "../../redux/crewsSlice";
+import { getCoordinates, setCoordinates } from "../../redux/coordinatesSlice";
 
 export const MapApp = () => {
 
-    const [coordinates, setCoordinates] = useState<number[]>([56.8498, 53.2045]);
     const address = useAppSelector(getSearchValue);
     const crews = useAppSelector(getCrews);
+    const coordinates = useAppSelector(getCoordinates);
     const dispatch = useAppDispatch();
 
     const convertAdress = () => {
@@ -26,7 +26,7 @@ export const MapApp = () => {
             const response = await fetch(`${endpoint}&apikey=${API_KEY}&geocode=${city}${convertAdress()}`);
             const data = await response.json();
             const coordinates = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
-            setCoordinates([parseFloat(coordinates[1]), parseFloat(coordinates[0])]);
+            dispatch(setCoordinates([parseFloat(coordinates[1]), parseFloat(coordinates[0])]));
             dispatch(setCrewList(mockCrews));
         } catch (err) {
             console.error(getCoordinate.name, err);
@@ -72,6 +72,7 @@ export const MapApp = () => {
                 {
                     crews.map(crew =>
                         <PlacemarkApp
+                            key={crew.crew_id}
                             coordinates={[crew.lat, crew.lon]}
                             color='#2C7865'
                         />
