@@ -1,4 +1,4 @@
-import { getDistance } from "./helpers/helpers";
+import { getDistance } from "../helpers/helpers";
 
 describe('CrewList', () => {
     test('get distance', () => {

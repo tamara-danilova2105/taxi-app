@@ -1,8 +1,8 @@
 import { Button, Card, Stack } from 'react-bootstrap';
-import { getCrews } from '../../redux/crewsSlice';
-import { useAppSelector } from '../../redux/hooks';
-import { getCoordinates } from '../../redux/coordinatesSlice';
-import { getDistance } from './helpers/helpers';
+import { getCrews } from '../../../redux/crewsSlice';
+import { useAppSelector } from '../../../redux/hooks';
+import { getCoordinates } from '../../../redux/coordinatesSlice';
+import { getDistance } from '../helpers/helpers';
 import styles from './CrewsList.module.scss';
 
 export const CrewsList = () => {

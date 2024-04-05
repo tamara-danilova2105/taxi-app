@@ -1,7 +1,7 @@
 interface IDistance {
-    lat1: number; 
+    lat1: number;
     lon1: number;
-    lat2: number; 
+    lat2: number;
     lon2: number;
 }
 
@@ -9,7 +9,7 @@ const deg2rad = (deg: number): number => {
     return deg * (Math.PI / 180);
 }
 
-export const getDistance = ({lat1, lon1, lat2, lon2}: IDistance): number => {
+export const getDistance = ({ lat1, lon1, lat2, lon2 }: IDistance): number => {
     const R = 6371; // Радиус земли в км
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
