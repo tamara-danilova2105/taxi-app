@@ -1,5 +1,5 @@
 import { Stack } from "react-bootstrap";
-import { CrewsList } from "./components/CrewsList/CrewsList";
+import { CrewsList } from "./components/CrewsList/ui/CrewsList";
 import { FormSearch } from "./components/FormSearch/FormSearch";
 import { MapApp } from "./components/MapApp/MapApp";
 
