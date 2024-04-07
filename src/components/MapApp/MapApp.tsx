@@ -36,7 +36,7 @@ export const MapApp = () => {
     useEffect(() => {
         if (address !== '') getCoordinate();
         else dispatch(setCrewList([]));
-    }, [address]);
+    }, [address, dispatch]);
 
     const handleClickMap = async (e: ymaps.Event) => {
         const coords = e.get('coords');

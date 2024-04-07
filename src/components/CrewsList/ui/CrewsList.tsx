@@ -1,14 +1,17 @@
 import { Button, Card, Stack } from 'react-bootstrap';
-import { getCrews } from '../../../redux/crewsSlice';
-import { useAppSelector } from '../../../redux/hooks';
+import { getCrews, setOrderCrew } from '../../../redux/crewsSlice';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { getCoordinates } from '../../../redux/coordinatesSlice';
 import { getDistance } from '../helpers/helpers';
 import styles from './CrewsList.module.scss';
+import { useEffect } from 'react';
+import { Crews } from '../../../types/types';
 
 export const CrewsList = () => {
 
     const crews = useAppSelector(getCrews);
-    const coordinates = useAppSelector(getCoordinates);   
+    const coordinates = useAppSelector(getCoordinates);
+    const dispatch = useAppDispatch();   
 
     const updateCrews = crews.map(crew => ({
         ...crew,
@@ -21,6 +24,14 @@ export const CrewsList = () => {
     }));
 
     const sortedCrews = updateCrews.sort((a, b) => a.distance - b.distance);
+
+    useEffect(() => {
+        dispatch(setOrderCrew(sortedCrews[0]))
+    }, [sortedCrews, dispatch]);
+
+    const handleOrder = (crew: Crews) => {
+        dispatch(setOrderCrew(crew));
+    }
 
     return (
         <div className={styles.main}>
@@ -36,7 +47,12 @@ export const CrewsList = () => {
                                 <Card.Text>{crew.car_color}</Card.Text>
                                 <Card.Text>{crew.distance}м </Card.Text>
                             </Stack>
-                            <Button variant="success">выбрать</Button>
+                            <Button 
+                                variant="success"
+                                onClick={() => handleOrder(crew)}
+                            >
+                                выбрать
+                            </Button>
                         </Card.Body>
                     </Card>
                 )
