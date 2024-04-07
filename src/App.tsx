@@ -6,7 +6,7 @@ import { Order } from "./components/Order/Order";
 
 function App() {
   return (
-    <Stack gap={2} className="col-md-6 mx-auto">
+    <Stack gap={3} className="col-md-6 mx-auto">
       <h2 className="mx-auto">Детали заказа</h2>
       <FormSearch />
       <Order />

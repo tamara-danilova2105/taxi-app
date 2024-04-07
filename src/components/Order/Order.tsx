@@ -5,6 +5,10 @@ import { useAppSelector } from "../../redux/hooks";
 export const Order = () => {
 
     const crew = useAppSelector(getOrderCrew);
+
+    const orderCrew = () => {
+        console.log('заказать');
+    }
     
     return (
         <>
@@ -27,7 +31,12 @@ export const Order = () => {
                                 {`номер: ${crew?.car_number}`}
                             </Card.Text>
                         </Stack>
-                        <Button variant="warning">ЗАКАЗАТЬ</Button>
+                        <Button 
+                            variant="warning"
+                            onClick={orderCrew}
+                        >
+                            ЗАКАЗАТЬ
+                        </Button>
                     </Card.Body>
                 </Card>
             }
