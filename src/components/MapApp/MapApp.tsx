@@ -25,6 +25,7 @@ export const MapApp = () => {
         try {
             const response = await fetch(`${endpoint}&apikey=${API_KEY}&geocode=${city}${convertAdress()}`);
             const data = await response.json();
+            console.log(data);
             const coordinates = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ');
             dispatch(setCoordinates([parseFloat(coordinates[1]), parseFloat(coordinates[0])]));
             dispatch(setCrewList(mockCrews));

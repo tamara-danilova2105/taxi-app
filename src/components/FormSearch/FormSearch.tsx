@@ -8,6 +8,7 @@ import useDebounce from '../../hooks/useDebounce/useDebounce';
 export const FormSearch = () => {
     const dispatch = useAppDispatch();
     const address = useAppSelector(getSearchValue);
+
     const [value, setValue] = useState<string>(address);
 
     useEffect(() => {
@@ -39,6 +40,9 @@ export const FormSearch = () => {
                     value={value}
                     onChange={handleOnChange}
                 />
+                <Form.Control.Feedback type="invalid">
+                    Введите правильный адрес
+                </Form.Control.Feedback>
             </Form.Group>
         </Form>
     )

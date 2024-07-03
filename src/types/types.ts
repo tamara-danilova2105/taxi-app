@@ -14,3 +14,21 @@ export interface Crews {
     lon: number;
     distance?: number;
 }
+
+interface Address {
+    address: string;
+    lat: number;
+    lon: number;
+}
+
+export interface OrderRequest {
+    source_time: string;
+    addresses: Address[];
+    crew_id?: number;
+}
+
+export interface OrderResponse {
+    code: number;
+    descr: string;
+    order_id: number;
+}
