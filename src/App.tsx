@@ -10,7 +10,10 @@ function App() {
       <h2 className="mx-auto">Детали заказа</h2>
       <FormSearch />
       <Order />
-      <Stack direction="horizontal" className="align-start" gap={4}>
+      <Stack
+        direction="horizontal"
+        className="justify-content-between"
+      >
         <MapApp />
         <CrewsList />
       </Stack>

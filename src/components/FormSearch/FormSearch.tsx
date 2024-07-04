@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import styles from './FormSearch.module.scss'
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getSearchValue, setSearch } from '../../redux/searchSlice';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import useDebounce from '../../hooks/useDebounce/useDebounce';
 
 export const FormSearch = () => {
@@ -25,8 +25,12 @@ export const FormSearch = () => {
         dispatch(setSearch(value));
     }, 1500);
 
+    const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+    };
+
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Form.Group className="d-flex">
                 <Form.Label
                     className={styles.label}

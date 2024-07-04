@@ -1,40 +1,14 @@
 import { Button, Card, Stack } from "react-bootstrap";
 import { getOrderCrew } from "../../redux/crewsSlice";
 import { useAppSelector } from "../../redux/hooks";
-import { OrderRequest, OrderResponse } from "../../types/types";
-import { getCurrentTime, getRandomNumber } from "../CrewsList/helpers/helpers";
-import { getSearchValue } from "../../redux/searchSlice";
-import { getCoordinates } from "../../redux/coordinatesSlice";
+import styles from './Order.module.scss';
+import { useState } from "react";
+import { AboutOrder } from "../AboutOrder/AboutOrder";
 
 export const Order = () => {
-
     const crew = useAppSelector(getOrderCrew);
-    const address = useAppSelector(getSearchValue);
-    const coordinates = useAppSelector(getCoordinates);
+    const [modalShow, setModalShow] = useState(false);
 
-    const order: OrderRequest = {
-        source_time: getCurrentTime(),
-        addresses: [
-            {
-                address: address,
-                lat: coordinates[1],
-                lon: coordinates[0],
-            }
-        ],
-        crew_id: crew?.crew_id,
-    }
-
-    const orderCrew = () => {
-        console.log(order);
-
-        const response: OrderResponse = {
-            code: getRandomNumber(),
-            descr: "OK",
-            order_id: getRandomNumber(),
-        }
-        console.log(response);
-    }
-    
     return (
         <>
             {
@@ -46,25 +20,34 @@ export const Order = () => {
                         </Card.Title>
                         <Stack
                             direction="horizontal"
-                            className='align-start'
-                            gap={5}
+                            className="justify-content-between"
                         >
-                            <Card.Text>
-                                {`цвет: ${crew?.car_color}`}
-                            </Card.Text>
-                            <Card.Text>
-                                {`номер: ${crew?.car_number}`}
-                            </Card.Text>
+                            <Stack
+                                className={styles.noMarginBottom}
+                                direction="horizontal"
+                                gap={5}
+                            >
+                                <Card.Text>
+                                    {`цвет: ${crew?.car_color}`}
+                                </Card.Text>
+                                <Card.Text>
+                                    {`номер: ${crew?.car_number}`}
+                                </Card.Text>
+                            </Stack>
+                            <Button
+                                variant="warning"
+                                onClick={() => setModalShow(true)}
+                            >
+                                ЗАКАЗАТЬ
+                            </Button>
                         </Stack>
-                        <Button 
-                            variant="warning"
-                            onClick={orderCrew}
-                        >
-                            ЗАКАЗАТЬ
-                        </Button>
                     </Card.Body>
                 </Card>
             }
+            <AboutOrder 
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
         </>
     );
 }
