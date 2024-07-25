@@ -10,7 +10,7 @@ const deg2rad = (deg: number): number => {
 }
 
 export const getDistance = ({ lat1, lon1, lat2, lon2 }: IDistance): number => {
-    const R = 6371; // Радиус земли в км
+    const radiusEarth  = 6371; // в км
     const dLat = deg2rad(lat2 - lat1);
     const dLon = deg2rad(lon2 - lon1);
 
@@ -19,7 +19,7 @@ export const getDistance = ({ lat1, lon1, lat2, lon2 }: IDistance): number => {
         Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c * 1000; // Расстояние в м
+    const distance = radiusEarth * c * 1000; // в м
     const distanceRound = Math.round(distance / 100) * 100
     return distanceRound;
 }
@@ -37,6 +37,5 @@ export const getCurrentTime = (): string => {
     return `${year}${month}${day}${hours}${minutes}${seconds}`;
 };
 
-export const getRandomNumber = (): number => {
-    return Math.floor(Math.random() * 1000) + 1;
-}
+export const getRandomNumber = (): number => Math.floor(Math.random() * 1000) + 1;
+

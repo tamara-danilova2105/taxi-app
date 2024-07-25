@@ -1,10 +1,10 @@
-import { Button, Card, Stack } from 'react-bootstrap';
+import { Alert, Button, Card, Stack } from 'react-bootstrap';
 import { getCrews, setOrderCrew } from '../../../redux/crewsSlice';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
 import { getCoordinates } from '../../../redux/coordinatesSlice';
 import { getDistance } from '../helpers/helpers';
 import styles from './CrewsList.module.scss';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Crews } from '../../../types/types';
 
 export const CrewsList = () => {
@@ -23,15 +23,27 @@ export const CrewsList = () => {
         })
     }));
 
-    const sortedCrews = updateCrews.sort((a, b) => a.distance - b.distance);
+    const sortedCrews = useMemo(() => {
+        return updateCrews.sort((a, b) => a.distance - b.distance);
+    }, [updateCrews]);
 
     useEffect(() => {
-        dispatch(setOrderCrew(sortedCrews[0]))
+        if (sortedCrews.length > 0) {
+            dispatch(setOrderCrew(sortedCrews[0]));
+        }
     }, [sortedCrews, dispatch]);
 
     const handleOrder = (crew: Crews) => {
         dispatch(setOrderCrew(crew));
-    }
+    };
+
+    if (!crews.length || !coordinates.length) {
+        return (
+            <Alert variant='warning'>
+                Свободных экипажей нет
+            </Alert>
+        );
+    };
 
     return (
         <div className={styles.main}>
