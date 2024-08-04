@@ -1,5 +1,5 @@
 import Form from 'react-bootstrap/Form';
-import styles from './FormSearch.module.scss'
+import styles from './FormSearch.module.scss';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { getSearchValue, setSearch } from '../../redux/searchSlice';
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
@@ -15,11 +15,10 @@ export const FormSearch = () => {
         setValue(address);
     }, [address]);
 
-
     const handleOnChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setValue(e.target.value);
         saveAdress(e.target.value);
-    }
+    };
 
     const saveAdress = useDebounce((value: string): void => {
         dispatch(setSearch(value));
@@ -49,5 +48,5 @@ export const FormSearch = () => {
                 </Form.Control.Feedback>
             </Form.Group>
         </Form>
-    )
-}
+    );
+};

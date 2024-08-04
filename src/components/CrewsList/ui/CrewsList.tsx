@@ -8,7 +8,6 @@ import { useEffect, useMemo } from 'react';
 import { Crews } from '../../../types/types';
 
 export const CrewsList = () => {
-
     const crews = useAppSelector(getCrews);
     const coordinates = useAppSelector(getCoordinates);
     const dispatch = useAppDispatch();   
@@ -37,7 +36,7 @@ export const CrewsList = () => {
         dispatch(setOrderCrew(crew));
     };
 
-    if (!crews.length || !coordinates.length) {
+    if (!updateCrews.length || !coordinates.length) {
         return (
             <Alert variant='warning'>
                 Свободных экипажей нет

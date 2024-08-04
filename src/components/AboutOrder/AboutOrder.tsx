@@ -9,7 +9,13 @@ import { getCurrentTime, getRandomNumber } from "../CrewsList/helpers/helpers";
 interface AboutOrderProps {
     show: boolean;
     onHide: () => void;
-}
+};
+
+const ordeResponse: OrderResponse = {
+    code: getRandomNumber(),
+    descr: "OK",
+    order_id: getRandomNumber(),
+};
 
 export const AboutOrder = (props: AboutOrderProps) => {
 
@@ -27,13 +33,7 @@ export const AboutOrder = (props: AboutOrderProps) => {
             }
         ],
         crew_id: crew?.crew_id,
-    }
-
-    const ordeResponse: OrderResponse = {
-        code: getRandomNumber(),
-        descr: "OK",
-        order_id: getRandomNumber(),
-    }
+    };
 
     return (
         <Modal
@@ -56,7 +56,7 @@ export const AboutOrder = (props: AboutOrderProps) => {
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="warning" onClick={props.onHide}>
-                    Close
+                    Закрыть
                 </Button>
             </Modal.Footer>
         </Modal>

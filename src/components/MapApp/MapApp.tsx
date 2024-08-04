@@ -71,7 +71,7 @@ export const MapApp = () => {
                     color='#FF8911'
                 />
                 {
-                    crews.map(crew =>
+                    crews?.map(crew =>
                         <PlacemarkApp
                             key={crew.crew_id}
                             coordinates={[crew.lat, crew.lon]}

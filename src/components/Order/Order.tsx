@@ -7,12 +7,13 @@ import { AboutOrder } from "../AboutOrder/AboutOrder";
 
 export const Order = () => {
     const crew = useAppSelector(getOrderCrew);
+    
     const [modalShow, setModalShow] = useState(false);
 
     return (
         <>
             {
-                crew !== undefined &&
+                crew !== null &&
                 <Card>
                     <Card.Body>
                         <Card.Title>
